@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 
 #ifndef IMPLICIT_SURFACE_H
 #define IMPLICIT_SURFACE_H
 
 #include "Eigen.h"
 #include "SimpleMesh.h"
+#include "Math.h"
 
 class ImplicitSurface
 {
@@ -44,7 +45,9 @@ public:
 	double Eval(const Eigen::Vector3d& _x)
 	{
 		// TODO: implement the implicit torus formula using the  variables m_center, m_radius (radius of the ring) and the radius m_a (small radius)
-		return 0.0;
+		//  ( x2 + y2 + z2 + R2 − a2 )2 − 4 R2 ( x2 + y2 ) = 0
+		double result = pow(pow((_x(0) - m_center(0)),2.0) + pow((_x(1) - m_center(1)),2.0)  + pow((_x(2) - m_center(2)),2.0) + m_radius*m_radius - m_a*m_a,2.0) -4*m_radius*m_radius*(pow((_x(0) - m_center(0)), 2.0) + pow((_x(1) - m_center(1)), 2.0));
+		return result;
 	}
 
 private:
