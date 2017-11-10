@@ -23,13 +23,9 @@ public:
 	double Eval(const Eigen::Vector3d& _x)
 	{
 		// TODO: implement the implicit sphere formula using the member variables m_center and m_radius
-
-		// create simple mesh
-
-		// use marching cubes to calculate edges and faces
-
-		// write mesh
-		return 0.0;
+		// formula: (x-x0)2 + (y-y0)2 + (z-z0)2 - R2 = 0 --> point on circle
+		double result = (_x(0) - m_center(0))*(_x(0) - m_center(0)) + (_x(1) - m_center(1))*(_x(1) - m_center(1)) + (_x(2) - m_center(2))*(_x(2) - m_center(2)) - m_radius*m_radius;
+		return result;
 	}
 
 private:
