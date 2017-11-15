@@ -162,7 +162,7 @@ public:
 		for (int i = 0; i < m_numCenters; i++)
 		{
 			// alphai * ||pi - x||^3
-			result += m_coefficents[i] + pow((m_funcSamp.m_pos[i]-_x).norm(), 3.0);
+			result += m_coefficents[i] * pow((m_funcSamp.m_pos[i]-_x).norm(), 3.0);
 		}
 		// b*x
 		// construct b - fill b
