@@ -158,6 +158,22 @@ public:
 		// hint: Eigen provides a norm() function to compute the l2-norm of a vector (e.g. see macro phi(i,j))
 		double result = 0.0;
 
+		// coefficients of the kernels
+		for (int i = 0; i < m_numCenters; i++)
+		{
+			// alphai * ||pi - x||^3
+			result += m_coefficents[i] + pow((m_funcSamp.m_pos[i]-_x).norm(), 3.0);
+		}
+		// b*x
+		// construct b - fill b
+		Eigen::Vector3d b(3);
+		b[0] = m_coefficents[m_numCenters];
+		b[1] = m_coefficents[m_numCenters + 1];
+		b[2] = m_coefficents[m_numCenters + 2];
+
+		result += b.dot(_x);
+		// d
+		result += m_coefficents[m_numCenters + 3];
 
 		return result;
 	}
