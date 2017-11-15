@@ -75,9 +75,7 @@ public:
 		Eigen::Vector3f n = m_pointcloud.GetNormals()[idx];
 
 		// TODO: implement the evaluation using Hoppe's method (see lecture slides)
-		float temp = (Eigen::Vector3f(x.x() - p.x(), x.y() - p.y(), x.z() - p.z())).dot(n);
-		return temp;
-		//return 0.0;
+		return 0.0;
 	}
 
 private:
@@ -183,27 +181,16 @@ private:
 		// note that all sample points (both on and off surface points) are stored in m_funcSamp
 		// you can access matrix elements using for example A(i,j) for the i-th row and j-th column
 		// similar you access the elements of the vector b, e.g. b(i) for the i-th element
-		for (int i = 0; i < 2 * m_numCenters; i++)
-		{
-			for (int j = 0; j < m_numCenters; j++)
-			{
-				A(i, j) = phi(i, j);
-			}
-			A(i, m_numCenters) = m_funcSamp.m_pos[i].x();//p_i_x
-			A(i, m_numCenters + 1) = m_funcSamp.m_pos[i].y();//p_i_y
-			A(i, m_numCenters + 2) = m_funcSamp.m_pos[i].z();//p_i_z
-			A(i, m_numCenters + 3) = 1.0;//1
-										 //Matrix A 
+
+
+
+
+
 
 			b[i] = m_funcSamp.m_val[i];
 			//Vector b
 		}
-
-
-
-
-
-
+		
 
 		// build the system matrix and the right hand side of the normal equation
 		m_systemMatrix = A.transpose() * A;
